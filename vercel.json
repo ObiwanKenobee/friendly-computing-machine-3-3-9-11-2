@@ -1,0 +1,202 @@
+{
+  "version": 2,
+  "name": "quantumvest-enterprise",
+  "buildCommand": "npm run build:production",
+  "outputDirectory": "dist",
+  "installCommand": "npm ci --include=dev --prefer-offline --no-audit",
+  "framework": "vite",
+  "regions": ["iad1"],
+
+  "rewrites": [
+    {
+      "source": "/api/intelligent-routing/:path*",
+      "destination": "/api/intelligent-routing"
+    },
+    {
+      "source": "/api/edge-optimization/:path*",
+      "destination": "/api/edge-optimization"
+    },
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/$1"
+    },
+    {
+      "source": "/((?!_next|favicon.ico|robots.txt|site.webmanifest|assets|api).*)",
+      "destination": "/index.html"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/home",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/dashboard-old",
+      "destination": "/dashboard",
+      "permanent": true
+    },
+    {
+      "source": "/legendary-investors",
+      "destination": "/legendary-investors-enterprise",
+      "permanent": true
+    },
+    {
+      "source": "/quantum-2050",
+      "destination": "/quantum-enterprise-2050",
+      "permanent": true
+    },
+    {
+      "source": "/conservation",
+      "destination": "/wildlife-conservation-enterprise",
+      "permanent": true
+    },
+    {
+      "source": "/african-market",
+      "destination": "/african-market-enterprise",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=31536000; includeSubDomains"
+        },
+        {
+          "key": "X-Intelligent-Infrastructure",
+          "value": "enabled"
+        },
+        {
+          "key": "X-Snake-Navigation",
+          "value": "active"
+        },
+        {
+          "key": "X-Free-Tier-Bypass",
+          "value": "edge-optimized"
+        }
+      ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "X-Edge-Cache",
+          "value": "optimized"
+        }
+      ]
+    },
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET, POST, PUT, DELETE, OPTIONS"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "Content-Type, Authorization"
+        },
+        {
+          "key": "X-Intelligent-Routing",
+          "value": "enabled"
+        }
+      ]
+    },
+    {
+      "source": "/(enterprise-subscriptions|legendary-investors-enterprise|african-market-enterprise|wildlife-conservation-enterprise|quantum-enterprise-2050|methuselah-enterprise)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600"
+        },
+        {
+          "key": "X-Enterprise-Feature",
+          "value": "enabled"
+        },
+        {
+          "key": "X-Snake-Engine-Optimized",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "source": "/infrastructure-navigator",
+      "headers": [
+        {
+          "key": "X-Game-Engine",
+          "value": "snake-xenzia"
+        },
+        {
+          "key": "X-Infrastructure-Management",
+          "value": "intelligent"
+        }
+      ]
+    }
+  ],
+  "env": {
+    "NODE_ENV": "production",
+    "VITE_APP_NAME": "QuantumVest Enterprise",
+    "VITE_APP_VERSION": "2.1.0",
+    "VITE_APP_ENV": "production",
+    "VITE_SITE_URL": "https://quantumvest-enterprise.vercel.app",
+    "VITE_INTELLIGENT_INFRASTRUCTURE": "true",
+    "VITE_SNAKE_NAVIGATION": "enabled",
+    "VITE_FREE_TIER_BYPASS": "true",
+    "VITE_ENABLE_ANALYTICS": "true",
+    "VITE_ENABLE_ENTERPRISE_FEATURES": "true",
+    "VITE_SECURE_MODE": "true",
+    "VITE_BUNDLE_ANALYZER": "false",
+    "VITE_DEBUG_MODE": "false"
+  },
+  "build": {
+    "env": {
+      "NODE_ENV": "production",
+      "GENERATE_SOURCEMAP": "false",
+      "VITE_BUILD_TARGET": "production",
+      "VITE_ENABLE_EDGE_OPTIMIZATION": "true",
+      "CI": "true",
+      "SKIP_INSTALL_SIMPLE": "true"
+    }
+  },
+  "github": {
+    "silent": true,
+    "autoAlias": false
+  },
+  "cleanUrls": true,
+  "trailingSlash": false
+}

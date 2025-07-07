@@ -1,0 +1,253 @@
+{
+  "name": "quantumvest-enterprise",
+  "version": "2.1.0",
+  "description": "QuantumVest Enterprise Investment Platform - Legendary Investor Strategies with AI-Powered Optimization",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=18.19.0",
+    "npm": ">=9.0.0"
+  },
+  "keywords": [
+    "investment",
+    "portfolio-optimization",
+    "legendary-investors",
+    "charlie-munger",
+    "warren-buffett",
+    "ray-dalio",
+    "peter-lynch",
+    "ai-optimization",
+    "mcts-reinforcement-learning",
+    "enterprise-platform",
+    "fintech",
+    "quantumvest"
+  ],
+  "homepage": "https://quantumvest.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/quantumvest/enterprise-platform.git"
+  },
+  "author": "QuantumVest Enterprise Team",
+  "license": "Proprietary",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "npm run typecheck && vite build",
+    "build:production": "NODE_ENV=production GENERATE_SOURCEMAP=false npm run build",
+    "build:analyze": "npm run build && npx vite-bundle-analyzer dist",
+    "preview": "vite preview --host 0.0.0.0 --port 4173",
+    "start": "serve -s dist -l 8080",
+    "start:production": "NODE_ENV=production serve -s dist -l 8080",
+    "deploy:vercel": "bash scripts/deploy-vercel.sh",
+    "deploy:vercel:prod": "bash scripts/deploy-vercel-production.sh",
+    "deploy:vercel:final": "bash scripts/deploy-vercel-final.sh",
+    "deploy:vercel:final:prod": "bash scripts/deploy-vercel-final.sh --production",
+    "deploy:render": "bash scripts/deploy-render.sh",
+    "vercel-build": "npm run build:production",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint:fix": "eslint . --ext ts,tsx --fix",
+    "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,md}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json,css,md}\"",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest --coverage",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "security:audit": "npm audit --audit-level moderate",
+    "security:fix": "npm audit fix",
+    "security:check": "npm run security:audit && npm run lint",
+    "deploy:staging": "npm run build && eb deploy quantumvest-staging",
+    "deploy:production": "npm run build:production && bash scripts/deploy-production.sh",
+    "deploy:verify": "curl -f https://quantumvest.app/api/health",
+    "docker:build": "docker build -t quantumvest-enterprise .",
+    "docker:build:production": "docker build -f Dockerfile.production -t quantumvest-enterprise:production .",
+    "docker:run": "docker run -p 3000:3000 quantumvest-enterprise",
+    "docker:run:production": "docker run -p 8080:8080 quantumvest-enterprise:production",
+    "performance:lighthouse": "lighthouse https://quantumvest.app --output=html --output-path=./lighthouse-report.html",
+    "performance:bundle-size": "npx bundlesize",
+    "performance:analyze": "npm run build:analyze",
+    "db:generate": "supabase gen types typescript --project-id your-project-id > src/integrations/supabase/types.ts",
+    "db:migrate": "supabase db push",
+    "db:seed": "node scripts/seed-database.js",
+    "db:reset": "supabase db reset",
+    "legendary:munger": "echo 'Charlie Munger Mental Models - Lattice Framework'",
+    "legendary:buffett": "echo 'Warren Buffett Economic Moats - Competitive Advantage Analysis'",
+    "legendary:dalio": "echo 'Ray Dalio All-Weather - Systematic Diversification'",
+    "legendary:lynch": "echo 'Peter Lynch Local Insights - Invest in What You Know'",
+    "legendary:all": "npm run legendary:munger && npm run legendary:buffett && npm run legendary:dalio && npm run legendary:lynch",
+    "demo:reset": "node scripts/reset-demo-sessions.js",
+    "demo:extend": "node scripts/extend-demo-sessions.js",
+    "demo:analytics": "node scripts/demo-analytics.js",
+    "enterprise:deploy": "npm run security:check && npm run test:coverage && npm run build:production && npm run deploy:production",
+    "enterprise:monitor": "node scripts/monitor-production.js",
+    "enterprise:backup": "node scripts/backup-production-data.js",
+    "enterprise:restore": "node scripts/restore-production-data.js",
+    "prepare": "command -v husky >/dev/null 2>&1 && husky install || echo 'husky not found, skipping git hooks setup'",
+    "postinstall": "command -v patch-package >/dev/null 2>&1 && patch-package || echo 'patch-package not found, skipping patches'"
+  },
+  "dependencies": {
+    "@radix-ui/react-accordion": "^1.1.2",
+    "@radix-ui/react-alert-dialog": "^1.0.5",
+    "@radix-ui/react-aspect-ratio": "^1.0.3",
+    "@radix-ui/react-avatar": "^1.0.4",
+    "@radix-ui/react-checkbox": "^1.0.4",
+    "@radix-ui/react-collapsible": "^1.0.3",
+    "@radix-ui/react-dialog": "^1.0.5",
+    "@radix-ui/react-dropdown-menu": "^2.0.6",
+    "@radix-ui/react-hover-card": "^1.0.7",
+    "@radix-ui/react-label": "^2.0.2",
+    "@radix-ui/react-menubar": "^1.0.4",
+    "@radix-ui/react-navigation-menu": "^1.1.4",
+    "@radix-ui/react-popover": "^1.0.7",
+    "@radix-ui/react-progress": "^1.0.3",
+    "@radix-ui/react-radio-group": "^1.1.3",
+    "@radix-ui/react-scroll-area": "^1.0.5",
+    "@radix-ui/react-select": "^2.0.0",
+    "@radix-ui/react-separator": "^1.0.3",
+    "@radix-ui/react-slider": "^1.1.2",
+    "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-switch": "^1.0.3",
+    "@radix-ui/react-tabs": "^1.0.4",
+    "@radix-ui/react-toast": "^1.1.5",
+    "@radix-ui/react-toggle": "^1.0.3",
+    "@radix-ui/react-toggle-group": "^1.0.4",
+    "@radix-ui/react-tooltip": "^1.0.7",
+    "@supabase/supabase-js": "^2.38.4",
+    "@tanstack/react-query": "^5.17.19",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
+    "cmdk": "^0.2.1",
+    "date-fns": "^3.2.0",
+    "embla-carousel-react": "^8.0.0-rc22",
+    "framer-motion": "^12.18.1",
+    "input-otp": "^1.2.4",
+    "lucide-react": "^0.323.0",
+    "next-themes": "^0.2.1",
+    "react": "^18.2.0",
+    "react-day-picker": "^8.10.0",
+    "react-dom": "^18.2.0",
+    "react-helmet-async": "^2.0.4",
+    "react-hook-form": "^7.49.3",
+    "react-resizable-panels": "^1.0.9",
+    "react-router-dom": "^6.21.3",
+    "recharts": "^2.10.3",
+    "sonner": "^1.4.0",
+    "tailwind-merge": "^2.2.1",
+    "tailwindcss-animate": "^1.0.7",
+    "vaul": "^0.9.0",
+    "zustand": "^4.5.0"
+  },
+  "devDependencies": {
+    "@hookform/resolvers": "^3.3.4",
+    "@playwright/test": "^1.41.2",
+    "@types/node": "^20.11.16",
+    "@types/react": "^18.2.56",
+    "@types/react-dom": "^18.2.19",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "@vitest/coverage-v8": "^1.2.2",
+    "@vitest/ui": "^1.2.2",
+    "autoprefixer": "^10.4.17",
+    "bundlesize": "^0.18.1",
+    "eslint": "^8.56.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "husky": "^9.0.10",
+    "jsdom": "^24.0.0",
+    "lighthouse": "^11.4.0",
+    "lint-staged": "^15.2.2",
+    "patch-package": "^8.0.0",
+    "postcss": "^8.4.35",
+    "prettier": "^3.2.5",
+    "serve": "^14.2.1",
+    "tailwindcss": "^3.4.1",
+    "terser": "^5.43.1",
+    "typescript": "^5.3.3",
+    "vite": "^5.1.3",
+    "vite-bundle-analyzer": "^0.7.0",
+    "vitest": "^1.2.2",
+    "zod": "^3.22.4"
+  },
+  "bundlesize": [
+    {
+      "path": "./dist/assets/*.js",
+      "maxSize": "2MB"
+    },
+    {
+      "path": "./dist/assets/*.css",
+      "maxSize": "500KB"
+    }
+  ],
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,css,md}": [
+      "prettier --write"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run typecheck && npm run test:coverage"
+    }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "resolutions": {
+    "@types/react": "^18.2.56",
+    "@types/react-dom": "^18.2.19"
+  },
+  "config": {
+    "enterprise": {
+      "features": {
+        "legendary_investors": true,
+        "portfolio_optimization": true,
+        "ai_explainability": true,
+        "mobile_management": true,
+        "global_expansion": true,
+        "demo_access": true,
+        "billing_system": true,
+        "enterprise_security": true
+      },
+      "deployment": {
+        "aws_beanstalk": true,
+        "docker_support": true,
+        "cdn_integration": true,
+        "ssl_certificates": true,
+        "load_balancing": true,
+        "auto_scaling": true
+      },
+      "monitoring": {
+        "cloudwatch": true,
+        "performance_tracking": true,
+        "error_reporting": true,
+        "user_analytics": true
+      }
+    }
+  },
+  "files": [
+    "build/**/*",
+    "public/**/*",
+    "src/**/*",
+    "scripts/**/*",
+    "aws/**/*",
+    "nginx/**/*",
+    "package.json",
+    "package-lock.json",
+    "README.md",
+    "LICENSE"
+  ]
+}
